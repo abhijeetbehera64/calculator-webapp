@@ -24,6 +24,22 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }  
+        }
+    stage('Static Code Analysis') {
+	    steps {
+		script{
+			def scannerHome = tool name: 'sonarcloud', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+	                    withSonarQubeEnv('sonarQube') {
+	                        bat """
+	                        C:\\ProgramData\\Jenkins\\.jenkins\\tools\\hudson.plugins.sonar.SonarRunnerInstallation\\sonarcloud\\bin\\sonar-scanner\
+	                 -Dsonar.projectKey=abhijeet-jenkins_calculator-webapp\
+	                 -Dsonar.sources=src//main//java\
+	                 -Dsonar.organization=abhijeet-jenkins\
+	                 -Dsonar.login=1ead1e8b933715de88ea3b93a369ec165175395a\
+	                 """
+                    }
+		}
+	    }
+	}	
 }
 }
