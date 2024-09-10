@@ -11,7 +11,7 @@ def get_commit_details(commit_id):
     
 if __name__=="__main__":
     if len(sys.argv) !=2:
-        print("Usage: python get_commit_details.py <commit_id)" , file=sys.stderr)
+        print("Usage: python get_commit_details.py <commit_id>)" , file=sys.stderr)
         sys.exit(1)
 
     commit_id=sys.argv[1]

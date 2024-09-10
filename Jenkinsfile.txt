@@ -3,7 +3,7 @@ pipeline {
     stages {
 	    stage('Get Commit Details') {
             steps {
-                bat 'python get_commit_details.py <53d59bc0f52a2aa885d8878a42c59c060314230d>'
+                bat 'python get_commit_details.py 53d59bc0f52a2aa885d8878a42c59c060314230d'
             }
         }
         stage('Pre-Build') {
