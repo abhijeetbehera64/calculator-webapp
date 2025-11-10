@@ -1,12 +1,6 @@
 pipeline {
     agent any
     stages {
-	    stage('Get Commit Details') {
-            steps {
-                bat 'python --version'
-                bat 'python get_commit_details.py 53d59bc0f52a2aa885d8878a42c59c060314230d'
-            }
-        }
         stage('Pre-Build') {
             steps {
                 script {
@@ -31,22 +25,5 @@ pipeline {
                 }
             }
         }
-    stage('Static Code Analysis') {
-	    steps {
-		script{
-			def scannerHome = tool name: 'sonarcloud', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-	                    withSonarQubeEnv('sonarQube') {
-	                        bat """
-	                        C:\\ProgramData\\Jenkins\\.jenkins\\tools\\hudson.plugins.sonar.SonarRunnerInstallation\\sonarcloud\\bin\\sonar-scanner\
-	                 -Dsonar.projectKey=abhijeet-jenkins_calculator-webapp\
-	                 -Dsonar.sources=src//main//java\
-					 -Dsonar.java.binaries=target/classes \
-	                 -Dsonar.organization=abhijeet-jenkins\
-	                 -Dsonar.login=1ead1e8b933715de88ea3b93a369ec165175395a\
-	                 """
-                    }
-		}
-	    }
-	}	
 }
 }
